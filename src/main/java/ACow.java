@@ -58,50 +58,62 @@ public class ACow {
             String rest = (words.length > 1) ? words[1] : null;
 
             printDashes();
-            switch (keyword) {
-                case "bye":
-                    exit();
-                    printDashes();
-                    break;
 
-                case "list":
-                    list();
-                    break;
-
-                case "todo":
-                    add(new Todo(rest));
-                    break;
-
-                case "deadline":
-                    String[] deadParts = rest.split(" /by ");
-                    add(new Deadline(deadParts[0], deadParts[1]));
-                    break;
-
-                case "event":
-                    String[] halves = rest.split(" /to ");
-                    String name = halves[0].split(" /from ")[0];
-                    String from = halves[0].split(" /from ")[1];
-                    String to = halves[1];
-                    add(new Event(name, from, to));
-                    break;
-
-                case "mark":
-                    if (rest == null) {
+            try {
+                switch (keyword) {
+                    case "bye":
+                        exit();
+                        printDashes();
                         break;
-                    }
-                    mark(Integer.parseInt(rest));
-                    break;
 
-                case "unmark":
-                    if (rest == null) {
+                    case "list":
+                        list();
                         break;
-                    }
-                    unmark(Integer.parseInt(rest));
-                    break;
-            }
 
-            if (command.equals("bye")) {
-                break;
+                    case "todo":
+                        if (rest == null || rest.trim().isEmpty()) {
+                            throw new ACowException("OOPS!!! Don't forget to add a tasty curry recipe to your todo list!");
+                        }
+                        add(new Todo(rest));
+                        break;
+
+                    case "deadline":
+                        String[] deadParts = rest.split(" /by ");
+                        add(new Deadline(deadParts[0], deadParts[1]));
+                        break;
+
+                    case "event":
+                        String[] halves = rest.split(" /to ");
+                        String name = halves[0].split(" /from ")[0];
+                        String from = halves[0].split(" /from ")[1];
+                        String to = halves[1];
+                        add(new Event(name, from, to));
+                        break;
+
+                    case "mark":
+                        if (rest == null) {
+                            break;
+                        }
+                        mark(Integer.parseInt(rest));
+                        break;
+
+                    case "unmark":
+                        if (rest == null) {
+                            break;
+                        }
+                        unmark(Integer.parseInt(rest));
+                        break;
+
+                    default:
+                        throw new ACowException("Sorry! I don't understand like when Shohib talks to me");
+                }
+
+                if (command.equals("bye")) {
+                    break;
+                }
+
+            } catch (ACowException e) {
+                System.out.println(e.getMessage());
             }
             printDashes();
         }
