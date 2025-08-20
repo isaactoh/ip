@@ -14,13 +14,24 @@ public class ACow {
         System.out.println("____________________________________________________________");
     }
 
+    public static void exit() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Good night my pookies! Rest well and dream of victory in our next race. See you on the track tomorrow. -Adarsh");
+        System.out.println("____________________________________________________________");
+    }
+
     public static void main(String[] args) {
         Scanner listener = new Scanner(System.in);
         greet();
 
         while (true) {
             String command = listener.nextLine();
-            echo(command);
+            if (command.equals("bye")) {
+                exit();
+                break;
+            } else {
+                echo(command);
+            }
         }
     }
 }
