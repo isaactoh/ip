@@ -51,7 +51,7 @@ public class ACow {
         greet();
         printDashes();
 
-        while (true) {
+        while (listener.hasNextLine()) {
             String command = listener.nextLine();
             String[] words = command.split(" ", 2);
             String keyword = words[0];
