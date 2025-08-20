@@ -38,6 +38,12 @@ public class ACow {
         System.out.println("  " + todolist[index]);
     }
 
+    public static void unmark(int index) {
+        todolist[index].unmark();
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("  " + todolist[index]);
+    }
+
     public static void main(String[] args) {
         Scanner listener = new Scanner(System.in);
         printDashes();
@@ -66,7 +72,7 @@ public class ACow {
                 if (rest == null) {
                     continue;
                 }
-                todolist[Integer.parseInt(rest)].unmark();
+                unmark(Integer.parseInt(rest));
             } else {
                 add(command);
             }
