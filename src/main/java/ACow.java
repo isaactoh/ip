@@ -13,11 +13,12 @@ public class ACow {
         System.out.println("What can I do for you?");
     }
 
-    public static void add(String item) {
-        Task newTask = new Task(item);
-        todolist[pointer] = newTask;
+    public static void add(Task task) {
+        todolist[pointer] = task;
         pointer += 1;
-        System.out.println("added: " + item);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + (pointer - 1) + " tasks in this list.");
     }
 
     public static void list() {
@@ -52,29 +53,55 @@ public class ACow {
 
         while (true) {
             String command = listener.nextLine();
-            String[] words = command.split(" ");
+            String[] words = command.split(" ", 2);
             String keyword = words[0];
             String rest = (words.length > 1) ? words[1] : null;
 
             printDashes();
+            switch (keyword) {
+                case "bye":
+                    exit();
+                    printDashes();
+                    break;
+
+                case "list":
+                    list();
+                    break;
+
+                case "todo":
+                    add(new Todo(rest));
+                    break;
+
+                case "deadline":
+                    String[] deadParts = rest.split(" /by ");
+                    add(new Deadline(deadParts[0], deadParts[1]));
+                    break;
+
+                case "event":
+                    String[] halves = rest.split(" /to ");
+                    String name = halves[0].split(" /from ")[0];
+                    String from = halves[0].split(" /from ")[1];
+                    String to = halves[1];
+                    add(new Event(name, from, to));
+                    break;
+
+                case "mark":
+                    if (rest == null) {
+                        break;
+                    }
+                    mark(Integer.parseInt(rest));
+                    break;
+
+                case "unmark":
+                    if (rest == null) {
+                        break;
+                    }
+                    unmark(Integer.parseInt(rest));
+                    break;
+            }
+
             if (command.equals("bye")) {
-                exit();
-                printDashes();
                 break;
-            } else if (command.equals("list")) {
-                list();
-            } else if (keyword.equals("mark")){
-                if (rest == null) {
-                    continue;
-                }
-                mark(Integer.parseInt(rest));
-            } else if (keyword.equals("unmark")) {
-                if (rest == null) {
-                    continue;
-                }
-                unmark(Integer.parseInt(rest));
-            } else {
-                add(command);
             }
             printDashes();
         }
