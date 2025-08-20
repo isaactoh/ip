@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class ACow {
+    private static String[] todolist = new String[100];
+    private static int pointer = 1;
+
     public static void greet() {
         System.out.println("____________________________________________________________");
         System.out.println("Hello! I'm acow123_bot");
@@ -8,9 +11,19 @@ public class ACow {
         System.out.println("____________________________________________________________");
     }
 
-    public static void echo(String command) {
+    public static void add(String item) {
+        todolist[pointer] = item;
+        pointer += 1;
         System.out.println("____________________________________________________________");
-        System.out.println(command);
+        System.out.println("added: " + item);
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void list() {
+        System.out.println("____________________________________________________________");
+        for (int i = 1; i < pointer; i++) {
+            System.out.println(i + ". " + todolist[i]);
+        }
         System.out.println("____________________________________________________________");
     }
 
@@ -29,8 +42,10 @@ public class ACow {
             if (command.equals("bye")) {
                 exit();
                 break;
+            } else if (command.equals("list")) {
+                list();
             } else {
-                echo(command);
+                add(command);
             }
         }
     }
