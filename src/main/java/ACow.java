@@ -1,8 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ACow {
-    private static Task[] todolist = new Task[100];
-    private static int pointer = 1;
+    private static List<Task> todolist = new ArrayList<>();
 
     public static void printDashes() {
         System.out.println("____________________________________________________________");
@@ -14,17 +15,16 @@ public class ACow {
     }
 
     public static void add(Task task) {
-        todolist[pointer] = task;
-        pointer += 1;
+        todolist.add(task);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + task);
-        System.out.println("Now you have " + (pointer - 1) + " tasks in this list.");
+        System.out.println("Now you have " + (todolist.size()) + " tasks in this list.");
     }
 
     public static void list() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i < pointer; i++) {
-            System.out.println(i + ". " + todolist[i]);
+        for (int i = 0; i < todolist.size(); i++) {
+            System.out.println((i + 1) + ". " + todolist.get(i));
         }
     }
 
@@ -34,15 +34,22 @@ public class ACow {
     }
 
     public static void mark(int index) {
-        todolist[index].mark();
+        todolist.get(index - 1).mark();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + todolist[index]);
+        System.out.println("  " + todolist.get(index - 1));
     }
 
     public static void unmark(int index) {
-        todolist[index].unmark();
+        todolist.get(index - 1).unmark();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + todolist[index]);
+        System.out.println("  " + todolist.get(index-1));
+    }
+
+    public static void delete(int index) {
+        System.out.println("Task removed like me from TREX soon:");
+        System.out.println("  " + todolist.get(index -1));
+        todolist.remove(index-1);
+        System.out.println("Now you have " + todolist.size() + " tasks in the list.");
     }
 
     public static void main(String[] args) {
@@ -72,7 +79,7 @@ public class ACow {
 
                     case "todo":
                         if (rest == null || rest.trim().isEmpty()) {
-                            throw new ACowException("OOPS!!! Don't forget to add a tasty curry recipe to your todo list!");
+                            throw new ACowException("Don't forget to add a tasty curry recipe to your todo list!");
                         }
                         add(new Todo(rest));
                         break;
@@ -104,8 +111,15 @@ public class ACow {
                         unmark(Integer.parseInt(rest));
                         break;
 
+                    case "delete":
+                        if (rest == null) {
+                            break;
+                        }
+                        delete(Integer.parseInt(rest));
+                        break;
+
                     default:
-                        throw new ACowException("Sorry! I don't understand like when Shohib talks to me");
+                        throw new ACowException("I don't understand like when Shohib talks to me");
                 }
 
                 if (command.equals("bye")) {
