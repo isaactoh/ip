@@ -3,86 +3,65 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ACow {
+    private final Ui ui;
     private static ArrayList<Task> todolist = new ArrayList<>();
     private static Storage storage = new Storage("data/acow.txt");
 
-    public static void printDashes() {
-        System.out.println("____________________________________________________________");
+    public ACow(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
     }
 
-    public static void greet() {
-        System.out.println("Hello! I'm acow123_bot");
-        System.out.println("What can I do for you?");
-    }
-
-    public static void add(Task task) {
+    public void add(Task task) {
         todolist.add(task);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + (todolist.size()) + " tasks in this list.");
+        ui.showAdded(task, todolist.size());
     }
 
-    public static void list() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < todolist.size(); i++) {
-            System.out.println((i + 1) + ". " + todolist.get(i));
-        }
+    public void mark(int index) {
+        Task toMark = todolist.get(index - 1);
+        toMark.mark();
+        ui.showMarked(toMark);
     }
 
-    public static void exit() {
-        System.out.println("Good night my pookies! Rest well and dream of victory in our");
-        System.out.println("next race. See you on the track tomorrow. -Adarsh");
+    public void unmark(int index) {
+        Task toUnmark = todolist.get(index-1);
+        toUnmark.unmark();
+        ui.showUnmarked(toUnmark);
     }
 
-    public static void mark(int index) {
-        todolist.get(index - 1).mark();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + todolist.get(index - 1));
-    }
-
-    public static void unmark(int index) {
-        todolist.get(index - 1).unmark();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + todolist.get(index-1));
-    }
-
-    public static void delete(int index) {
-        System.out.println("Task removed like me from TREX soon:");
-        System.out.println("  " + todolist.get(index -1));
+    public void delete(int index) {
+        Task toRemove = todolist.get(index - 1);
         todolist.remove(index-1);
-        System.out.println("Now you have " + todolist.size() + " tasks in the list.");
+        ui.showDeleted(toRemove, todolist.size());
     }
 
-    public static void main(String[] args) {
-        Scanner listener = new Scanner(System.in);
+    public void run() {
         try {
             todolist = storage.load();
         } catch (IOException e) {
-            System.out.println("No previous data found like my T100 money.");
-            System.out.println("Starting fresh!");
+            ui.showError("No previous data found like my T100 money.");
+            ui.showError("Starting fresh!");
         }
 
-        printDashes();
-        greet();
-        printDashes();
+        ui.showGreeting();
 
-        while (listener.hasNextLine()) {
-            String command = listener.nextLine();
+        while (true) {
+            String command = ui.readCommand();
             String[] words = command.split(" ", 2);
             String keyword = words[0];
             String rest = (words.length > 1) ? words[1] : null;
 
-            printDashes();
+            ui.printDashes();
 
             try {
                 switch (keyword) {
                     case "bye":
-                        exit();
-                        printDashes();
+                        ui.showAdios();
+                        ui.printDashes();
                         break;
 
                     case "list":
-                        list();
+                        ui.showList(todolist);
                         break;
 
                     case "todo":
@@ -133,7 +112,7 @@ public class ACow {
                 try {
                     storage.save(todolist);
                 } catch (IOException e) {
-                    System.out.println("Error saving data.");
+                    ui.showError("Error saving data.");
                 }
 
                 if (command.equals("bye")) {
@@ -141,9 +120,13 @@ public class ACow {
                 }
 
             } catch (ACowException e) {
-                System.out.println(e.getMessage());
+                ui.showError(e.getMessage());
             }
-            printDashes();
+            ui.printDashes();
         }
+    }
+
+    public static void main(String[] args) {
+        new ACow("data/tasks.txt").run();
     }
 }
