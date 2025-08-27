@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ACow {
-    private static List<Task> todolist = new ArrayList<>();
+    private static ArrayList<Task> todolist = new ArrayList<>();
+    private static Storage storage = new Storage("data/acow.txt");
 
     public static void printDashes() {
         System.out.println("____________________________________________________________");
@@ -54,6 +55,13 @@ public class ACow {
 
     public static void main(String[] args) {
         Scanner listener = new Scanner(System.in);
+        try {
+            todolist = storage.load();
+        } catch (IOException e) {
+            System.out.println("No previous data found like my T100 money.");
+            System.out.println("Starting fresh!");
+        }
+
         printDashes();
         greet();
         printDashes();
@@ -120,6 +128,12 @@ public class ACow {
 
                     default:
                         throw new ACowException("I don't understand like when Shohib talks to me");
+                }
+
+                try {
+                    storage.save(todolist);
+                } catch (IOException e) {
+                    System.out.println("Error saving data.");
                 }
 
                 if (command.equals("bye")) {

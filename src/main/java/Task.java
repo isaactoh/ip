@@ -1,17 +1,22 @@
 public class Task {
     private String name;
-    private boolean done = false;
+    private boolean isDone = false;
 
     public Task(String name) {
         this.name = name;
     }
 
+    public Task(String name, boolean isDone) {
+        this.name = name;
+        this.isDone = isDone;
+    }
+
     public void mark() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public void unmark() {
-        this.done = false;
+        this.isDone = false;
     }
 
     public String getName() {
@@ -19,12 +24,16 @@ public class Task {
     }
 
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 
     @Override
     public String toString() {
-        String check = done ? "[X]" : "[ ]";
+        String check = isDone ? "[X]" : "[ ]";
         return check + " " + this.name;
+    }
+
+    public String store() {
+        return " | " + (isDone ? "1" : "0") + " | " + getName();
     }
 }
