@@ -7,11 +7,22 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * The ACow program is the main entry point to an application
+ * that stores and manages todo list tasks
+ *
+ * @author isaactoh
+ */
 public class ACow {
     private final Ui ui;
     private static TaskList todolist;
     private static Storage storage;
 
+    /**
+     * Constructs an ACow instance with the specified storage file
+     *
+     * @param filePath the file path to where tasks are stored
+     */
     public ACow(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +35,10 @@ public class ACow {
         }
     }
 
+    /**
+     * Runs the main program loop, reading user commands,
+     * executing them, and displaying results until exit command is issued
+     */
     public void run() {
         ui.showGreeting();
         boolean isExit = false;
@@ -43,6 +58,11 @@ public class ACow {
         }
     }
 
+    /**
+     * The main entry point for the ACow application
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         new ACow("data/tasks.txt").run();
     }

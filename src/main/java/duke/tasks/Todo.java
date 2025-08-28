@@ -1,19 +1,44 @@
 package duke.tasks;
 
+/**
+ * Representation of a simple todo task.
+ */
 public class Todo extends Task {
-    public Todo(String name) {
-        super(name);
+
+    /**
+     * Constructs a todo task with the given description.
+     *
+     * @param description the description of the task.
+     */
+    public Todo(String description) {
+        super(description);
     }
 
-    public Todo(String name, boolean isDone) {
-        super(name, isDone);
+    /**
+     * Reconstructs an existing todo task loaded from the storage.
+     *
+     * @param description the description of the task.
+     * @param isDone whether the task has been done.
+     */
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return the string representation.
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();
     }
 
+    /**
+     * Converts the task into a format for storage.
+     *
+     * @return the task in a storable format.
+     */
     @Override
     public String store() {
         return "T" + super.store();

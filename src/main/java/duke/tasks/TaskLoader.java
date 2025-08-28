@@ -2,7 +2,18 @@ package duke.tasks;
 
 import duke.ACowException;
 
+/**
+ * Class that handles the conversion of saved task data from storage
+ * into the respective Task objects.
+ */
 public class TaskLoader {
+
+    /**
+     * Converts a saved task into a Task object.
+     *
+     * @param line the task in storage format.
+     * @return the converted Task object.
+     */
     public static Task load(String line) {
         String[] parts = line.split(" \\| ");
 

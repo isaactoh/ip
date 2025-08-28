@@ -1,41 +1,89 @@
 package duke.tasks;
 
+/**
+ * Represents a generic task in the task management system.
+ */
 public class Task {
-    private String name;
+    /**
+     * Description of the task.
+     */
+    private String description;
+
+    /**
+     * Indicates whether the task has been marked as done.
+     */
     private boolean isDone = false;
 
-    public Task(String name) {
-        this.name = name;
+    /**
+     * Constructs a Task with the given description.
+     *
+     * @param description the description of the task.
+     */
+    public Task(String description) {
+        this.description = description;
     }
 
-    public Task(String name, boolean isDone) {
-        this.name = name;
+    /**
+     * Constructs a Task with the given description and
+     * whether it has been done.
+     *
+     * @param description the description of the task.
+     * @param isDone whether the task has been marked as done.
+     */
+    public Task(String description, boolean isDone) {
+        this.description = description;
         this.isDone = isDone;
     }
 
+    /**
+     * Marks the task as done.
+     */
     public void mark() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task as not done.
+     */
     public void unmark() {
         this.isDone = false;
     }
 
-    public String getName() {
-        return name;
+    /**
+     * Returns the description of the task.
+     *
+     * @return the description of the task.
+     */
+    public String getDescription() {
+        return description;
     }
 
+    /**
+     * Returns whether the task has been done or not.
+     *
+     * @return true if task is done, false if not done.
+     */
     public boolean isDone() {
         return isDone;
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return the string representation.
+     */
     @Override
     public String toString() {
         String check = isDone ? "[X]" : "[ ]";
-        return check + " " + this.name;
+        return check + " " + this.description;
     }
 
+    /**
+     * Converts the task into a format for storage.
+     *
+     * @return the task in a storable format.
+     */
     public String store() {
-        return " | " + (isDone ? "1" : "0") + " | " + getName();
+        return " | " + (isDone ? "1" : "0") + " | " + getDescription();
     }
 }
