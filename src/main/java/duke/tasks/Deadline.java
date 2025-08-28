@@ -1,7 +1,10 @@
 package duke.tasks;
 
+import duke.ACowException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     private LocalDate by;
@@ -10,13 +13,16 @@ public class Deadline extends Task {
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public Deadline(String description, String byStr) {
-        super(description);
-        this.by = LocalDate.parse(byStr, INPUT_FORMAT);
+        this(description, byStr, false);
     }
 
     public Deadline(String description, String byStr, boolean isDone) {
         super(description, isDone);
-        this.by = LocalDate.parse(byStr, INPUT_FORMAT);
+        try {
+            this.by = LocalDate.parse(byStr, INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new ACowException("Please use yyyy-mm-dd format for deadlines!");
+        }
     }
 
     @Override

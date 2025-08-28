@@ -5,6 +5,8 @@ import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
 
+import java.time.LocalDate;
+
 public class Parser {
 
     public static Command parse(String command) throws ACowException {
@@ -26,6 +28,9 @@ public class Parser {
                 return new AddCommand(new Todo(rest));
 
             case "deadline":
+                if (rest == null) {
+                    throw new ACowException("Need '/by!'");
+                }
                 String[] deadParts = rest.split(" /by ");
                 if (deadParts.length < 2) {
                     throw new ACowException("By when? Christmas?");
