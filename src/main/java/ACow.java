@@ -17,33 +17,11 @@ public class ACow {
         }
     }
 
-    public void add(Task task) {
-        todolist.add(task);
-        ui.showAdded(task, todolist.size());
-    }
-
-    public void mark(int index) {
-        Task toMark = todolist.get(index - 1);
-        toMark.mark();
-        ui.showMarked(toMark);
-    }
-
-    public void unmark(int index) {
-        Task toUnmark = todolist.get(index-1);
-        toUnmark.unmark();
-        ui.showUnmarked(toUnmark);
-    }
-
-    public void delete(int index) {
-        Task toRemove = todolist.get(index - 1);
-        todolist.remove(index-1);
-        ui.showDeleted(toRemove, todolist.size());
-    }
-
     public void run() {
         ui.showGreeting();
+        boolean isExit = false;
 
-        while (true) {
+        while (!isExit) {
             String command = ui.readCommand();
             String[] words = command.split(" ", 2);
             String keyword = words[0];
@@ -54,24 +32,27 @@ public class ACow {
             try {
                 switch (keyword) {
                     case "bye":
-                        ui.showAdios();
-                        ui.printDashes();
+                        ExitCommand exit = new ExitCommand();
+                        exit.execute(todolist, ui, storage);
+                        isExit = exit.isExit();
                         break;
 
                     case "list":
-                        ui.showList(todolist);
+                        new ListCommand().execute(todolist, ui, storage);
                         break;
 
                     case "todo":
                         if (rest == null || rest.trim().isEmpty()) {
                             throw new ACowException("Don't forget to add a tasty curry recipe to your todo list!");
                         }
-                        add(new Todo(rest));
+                        AddCommand addT = new AddCommand(new Todo(rest));
+                        addT.execute(todolist, ui, storage);
                         break;
 
                     case "deadline":
                         String[] deadParts = rest.split(" /by ");
-                        add(new Deadline(deadParts[0], deadParts[1]));
+                        AddCommand addD = new AddCommand(new Deadline(deadParts[0], deadParts[1]));
+                        addD.execute(todolist, ui, storage);
                         break;
 
                     case "event":
@@ -79,28 +60,32 @@ public class ACow {
                         String name = halves[0].split(" /from ")[0];
                         String from = halves[0].split(" /from ")[1];
                         String to = halves[1];
-                        add(new Event(name, from, to));
+                        AddCommand addE = new AddCommand(new Event(name, from, to));
+                        addE.execute(todolist, ui, storage);
                         break;
 
                     case "mark":
                         if (rest == null) {
                             break;
                         }
-                        mark(Integer.parseInt(rest));
+                        MarkCommand mark = new MarkCommand(Integer.parseInt(rest));
+                        mark.execute(todolist, ui, storage);
                         break;
 
                     case "unmark":
                         if (rest == null) {
                             break;
                         }
-                        unmark(Integer.parseInt(rest));
+                        UnmarkCommand unmark = new UnmarkCommand(Integer.parseInt(rest));
+                        unmark.execute(todolist, ui, storage);
                         break;
 
                     case "delete":
                         if (rest == null) {
                             break;
                         }
-                        delete(Integer.parseInt(rest));
+                        DeleteCommand del = new DeleteCommand(Integer.parseInt(rest));
+                        del.execute(todolist, ui, storage);
                         break;
 
                     default:
@@ -111,10 +96,6 @@ public class ACow {
                     storage.save(todolist);
                 } catch (IOException e) {
                     ui.showError("Error saving data.");
-                }
-
-                if (command.equals("bye")) {
-                    break;
                 }
 
             } catch (ACowException e) {
