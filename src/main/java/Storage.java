@@ -29,9 +29,9 @@ public class Storage {
         return tasks;
     }
 
-    public void save(ArrayList<Task> tasks) throws IOException {
+    public void save(TaskList tasks) throws IOException {
         FileWriter writer = new FileWriter(filePath);
-        for (Task task : tasks) {
+        for (Task task : tasks.getTasks()) {
             writer.write(task.store() + System.lineSeparator());
         }
         writer.close();

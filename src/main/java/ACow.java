@@ -1,15 +1,20 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ACow {
     private final Ui ui;
-    private static ArrayList<Task> todolist = new ArrayList<>();
-    private static Storage storage = new Storage("data/acow.txt");
+    private static TaskList todolist;
+    private static Storage storage;
 
     public ACow(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        try {
+            todolist = new TaskList(storage.load());
+        } catch (IOException e) {
+            ui.showError("No previous data found like my T100 money.");
+            ui.showError("Starting fresh!");
+            todolist = new TaskList();
+        }
     }
 
     public void add(Task task) {
@@ -36,13 +41,6 @@ public class ACow {
     }
 
     public void run() {
-        try {
-            todolist = storage.load();
-        } catch (IOException e) {
-            ui.showError("No previous data found like my T100 money.");
-            ui.showError("Starting fresh!");
-        }
-
         ui.showGreeting();
 
         while (true) {

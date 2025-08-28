@@ -26,7 +26,7 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in this list.");
     }
 
-    public void showList(ArrayList<Task> tasks) {
+    public void showList(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + ". " + tasks.get(i));
