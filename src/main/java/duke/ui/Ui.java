@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package duke.ui;
+
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -44,7 +48,7 @@ public class Ui {
     }
 
     public void showDeleted(Task task, int size) {
-        System.out.println("Task removed like me from TREX soon:");
+        System.out.println("duke.tasks.Task removed like me from TREX soon:");
         System.out.println("  " + task);
         System.out.println("Now you have " + size + " tasks in the list.");
     }

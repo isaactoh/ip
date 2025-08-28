@@ -1,5 +1,10 @@
-import java.util.ArrayList;
+package duke.commands;
 
+
+import duke.Storage;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.ui.Ui;
 
 public class AddCommand extends Command {
     private final Task task;

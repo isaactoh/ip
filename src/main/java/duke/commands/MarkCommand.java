@@ -1,4 +1,11 @@
-public class MarkCommand extends Command{
+package duke.commands;
+
+import duke.Storage;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.ui.Ui;
+
+public class MarkCommand extends Command {
     private Integer index;
 
     public MarkCommand(Integer index) {

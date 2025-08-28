@@ -1,3 +1,10 @@
+package duke;
+
+import duke.commands.Command;
+import duke.commands.Parser;
+import duke.tasks.TaskList;
+import duke.ui.Ui;
+
 import java.io.IOException;
 
 public class ACow {

@@ -1,3 +1,7 @@
+package duke.tasks;
+
+import duke.ACowException;
+
 public class TaskLoader {
     public static Task load(String line) {
         String[] parts = line.split(" \\| ");

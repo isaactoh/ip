@@ -1,3 +1,9 @@
+package duke;
+
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.tasks.TaskLoader;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package duke.commands;
+
+import duke.Storage;
+import duke.tasks.TaskList;
+import duke.ui.Ui;
 
 public class ExitCommand extends Command {
     @Override
