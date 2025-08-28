@@ -10,13 +10,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles loading and saving task data from and to a specified file path
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a Storage instance with the given file path
+     *
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Load tasks from the storage file
+     *
+     * @return a list of tasks read from the file
+     * @throws IOException
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -35,24 +49,17 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the current list of tasks
+     *
+     * @param tasks list of tasks to be saved
+     * @throws IOException
+     */
     public void save(TaskList tasks) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         for (Task task : tasks.getTasks()) {
             writer.write(task.store() + System.lineSeparator());
         }
         writer.close();
-    }
-
-    public static void main(String[] args) {
-        Storage storage = new Storage("data/acow.txt");
-        ArrayList<Task> tasks = null;
-        try {
-            tasks = storage.load();
-        } catch (IOException e) {
-            System.out.println("Hi");
-        }
-        for (Task t : tasks) {
-            System.out.println(t);
-        }
     }
 }
