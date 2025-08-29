@@ -54,8 +54,6 @@ public class TaskList {
 
     /**
      * Returns the current number of tasks.
-     *
-     * @return the current number of tasks.
      */
     public int size() {
         return tasks.size();
@@ -63,8 +61,6 @@ public class TaskList {
 
     /**
      * Returns the list of tasks.
-     *
-     * @return the list of tasks.
      */
     public ArrayList<Task> getTasks() {
         return tasks;

@@ -5,9 +5,17 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents the marking of a task as not done yet.
+ */
 public class UnmarkCommand extends Command {
     private Integer index;
 
+    /**
+     * Constructs the command to mark a task as not done yet.
+     *
+     * @param index the index of the task to unmark.
+     */
     public UnmarkCommand(Integer index) {
         this.index = index;
     }

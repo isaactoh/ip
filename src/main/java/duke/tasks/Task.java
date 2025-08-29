@@ -4,14 +4,7 @@ package duke.tasks;
  * Represents a generic task in the task management system.
  */
 public class Task {
-    /**
-     * Description of the task.
-     */
     private String description;
-
-    /**
-     * Indicates whether the task has been marked as done.
-     */
     private boolean isDone = false;
 
     /**
@@ -51,8 +44,6 @@ public class Task {
 
     /**
      * Returns the description of the task.
-     *
-     * @return the description of the task.
      */
     public String getDescription() {
         return description;
@@ -69,8 +60,6 @@ public class Task {
 
     /**
      * Returns a string representation of the task.
-     *
-     * @return the string representation.
      */
     @Override
     public String toString() {

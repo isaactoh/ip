@@ -1,11 +1,13 @@
 package duke.tasks;
 
-import duke.commands.Parser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * JUnit tests for the Deadline class.
+ */
 public class DeadlineTest {
     @Test
     public void input_validDate_success() {
