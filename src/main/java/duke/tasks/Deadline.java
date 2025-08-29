@@ -10,9 +10,6 @@ import java.time.format.DateTimeParseException;
  * Represents a task with a due date.
  */
 public class Deadline extends Task {
-    /**
-     * The date the task has to be done by.
-     */
     private LocalDate by;
 
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -44,21 +41,12 @@ public class Deadline extends Task {
         }
     }
 
-    /**
-     * Returns a string representation of the task.
-     *
-     * @return the string representation.
-     */
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(OUTPUT_FORMAT) + ")";
     }
 
-    /**
-     * Converts the task into a format for storage.
-     *
-     * @return the task in a storable format.
-     */
     @Override
     public String store() {
         return "D" + super.store() + " | " + by.format(INPUT_FORMAT);

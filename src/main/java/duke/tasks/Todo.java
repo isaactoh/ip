@@ -24,21 +24,11 @@ public class Todo extends Task {
         super(description, isDone);
     }
 
-    /**
-     * Returns a string representation of the task.
-     *
-     * @return the string representation.
-     */
     @Override
     public String toString() {
         return "[T]" + super.toString();
     }
 
-    /**
-     * Converts the task into a format for storage.
-     *
-     * @return the task in a storable format.
-     */
     @Override
     public String store() {
         return "T" + super.store();

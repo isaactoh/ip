@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents the exceptions unique to this application.
+ */
 public class ACowException extends RuntimeException {
     public ACowException(String msg) {
         super(msg);

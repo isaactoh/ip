@@ -6,9 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * JUnit tests for the Parser class.
+ */
 public class ParserTest {
     @Test
-    public void todo_emptyInput_exceptionThrown() {
+    public void parse_emptyTodoInput_exceptionThrown() {
         try {
             Parser.parse("todo");
             fail();
@@ -18,7 +21,7 @@ public class ParserTest {
     }
 
     @Test
-    public void deadline_noBy_exceptionThrown() {
+    public void parse_noDeadlineBy_exceptionThrown() {
         try {
             Parser.parse("deadline");
             fail();
@@ -28,7 +31,7 @@ public class ParserTest {
     }
 
     @Test
-    public void input_unrecognisedCommand_exceptionThrown() {
+    public void parse_unrecognisedCommand_exceptionThrown() {
         try {
             Parser.parse("tada");
             fail();

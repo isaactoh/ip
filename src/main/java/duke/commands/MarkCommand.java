@@ -5,9 +5,17 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents the marking of a task as done.
+ */
 public class MarkCommand extends Command {
     private Integer index;
 
+    /**
+     * Constructs a command to mark a task as done.
+     *
+     * @param index the index of the task to mark.
+     */
     public MarkCommand(Integer index) {
         this.index = index;
     }

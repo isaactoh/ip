@@ -7,8 +7,18 @@ import duke.tasks.Todo;
 
 import java.time.LocalDate;
 
+/**
+ * Represents the conversion of an input into its respective command.
+ */
 public class Parser {
 
+    /**
+     * Convert the user input into the command to be executed.
+     *
+     * @param command the user input.
+     * @return the command to be executed.
+     * @throws ACowException the exception unique to this application.
+     */
     public static Command parse(String command) throws ACowException {
         String[] words = command.split(" ", 2);
         String keyword = words[0];
