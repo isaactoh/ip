@@ -109,6 +109,17 @@ public class Ui {
     }
 
     /**
+     * Displays tasks in the list with the string inputted.
+     */
+    public void showFind(TaskList tasks, String toSearch) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).toString().contains(toSearch)) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
+
+    /**
      * Retrieves the instruction to be parsed.
      *
      * @return return the next input from the user.
