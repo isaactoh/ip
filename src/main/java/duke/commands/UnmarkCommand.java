@@ -1,9 +1,12 @@
 package duke.commands;
 
+import duke.ACowException;
 import duke.Storage;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
+
+import java.io.IOException;
 
 /**
  * Represents the marking of a task as not done yet.
@@ -25,6 +28,11 @@ public class UnmarkCommand extends Command {
         Task toUnmark = tasks.get(index - 1);
         toUnmark.unmark();
         ui.showUnmarked(toUnmark);
+        try {
+            storage.save(tasks);
+        } catch (IOException e) {
+            throw new ACowException(e.getMessage());
+        }
     }
 
     @Override
