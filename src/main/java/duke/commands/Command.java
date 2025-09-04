@@ -1,7 +1,9 @@
 package duke.commands;
 
+import duke.ACowException;
 import duke.Storage;
 import duke.tasks.TaskList;
+import duke.ui.GuiUi;
 import duke.ui.Ui;
 
 /**
@@ -21,4 +23,10 @@ public abstract class Command {
      * Returns true if the command is the Exit command, false otherwise.
      */
     public abstract boolean isExit();
+
+    public String executeAndReturn(TaskList tasks, Storage storage) throws ACowException {
+        GuiUi tempUi = new GuiUi(); // e.g. UI that buffers instead of printing
+        this.execute(tasks, tempUi, storage);
+        return tempUi.getOutput();
+    }
 }

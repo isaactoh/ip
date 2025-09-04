@@ -58,6 +58,16 @@ public class ACow {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.executeAndReturn(todolist, storage);
+        } catch (ACowException e) {
+            return e.getMessage();
+        }
+    }
+
+
     /**
      * The main entry point for the ACow application
      *
