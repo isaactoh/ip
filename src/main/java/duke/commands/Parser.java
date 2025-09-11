@@ -21,6 +21,7 @@ public class Parser {
      */
     public static Command parse(String command) throws ACowException {
         String[] words = command.split(" ", 2);
+        assert words.length >= 1: "Parser error: command.split should always produce at least one word";
         String keyword = words[0];
         String rest = (words.length > 1) ? words[1] : null;
 
@@ -49,6 +50,7 @@ public class Parser {
 
         case "event":
             String[] halves = rest.split(" /to ");
+            assert halves.length == 2: "Halves means split in 2";
             String name = halves[0].split(" /from ")[0];
             String from = halves[0].split(" /from ")[1];
             String to = halves[1];
