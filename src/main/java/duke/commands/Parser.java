@@ -5,8 +5,6 @@ import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
 
-import java.time.LocalDate;
-
 /**
  * Represents the conversion of an input into its respective command.
  */

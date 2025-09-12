@@ -1,5 +1,7 @@
 package duke.ui;
 
+import duke.clients.Client;
+import duke.clients.ClientList;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -114,6 +116,39 @@ public class Ui {
     public void showFind(TaskList tasks, String toSearch) {
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).toString().contains(toSearch)) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
+
+    public void showAddClient(Client client, ClientList clients) {
+        System.out.println(client + " created");
+        System.out.println("You now have " + clients.size() + " clients");
+    }
+
+    public void showAssignClient(Task task, Client client) {
+        System.out.println(client + " added to " + task);
+    }
+
+    public void showClients(ClientList clients) {
+        System.out.println("Here are your clients:");
+        for (int i = 0; i < clients.size(); i++) {
+            System.out.println((i + 1) + ". " + clients.get(i));
+        }
+    }
+
+    public void showDeleteClient(Client client) {
+        System.out.println(client + " has been deleted.");
+    }
+
+    public void showLeave(int index, Client client) {
+        System.out.println(client + " left task " + (index + 1));
+    }
+
+    public void showClientTasks(TaskList tasks, Client client) {
+        System.out.println(client + " is part of tasks:");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getClient().equals(client)) {
                 System.out.println((i + 1) + ". " + tasks.get(i));
             }
         }
