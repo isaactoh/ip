@@ -33,7 +33,6 @@ public class AddCommand extends Command {
         } catch (IOException e) {
             throw new ACowException(e.getMessage());
         }
-
     }
 
     @Override

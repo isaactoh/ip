@@ -1,11 +1,16 @@
 package duke.tasks;
 
+import duke.ACowException;
+import duke.clients.Client;
+import duke.clients.ClientList;
+
 /**
  * Represents a generic task in the task management system.
  */
 public class Task {
     private String description;
     private boolean isDone = false;
+    private Client client;
 
     /**
      * Constructs a Task with the given description.
@@ -59,6 +64,14 @@ public class Task {
         return isDone;
     }
 
+    public void addClient(Client client) {
+        this.client = client;
+    }
+
+    public void deleteClient() {
+        this.client = null;
+    }
+
     /**
      * Returns a string representation of the task.
      */
@@ -66,6 +79,14 @@ public class Task {
     public String toString() {
         String check = isDone ? "[X]" : "[ ]";
         return check + " " + this.description;
+    }
+
+    public Client getClient() {
+        if (client != null) {
+            return client;
+        } else {
+            return null;
+        }
     }
 
     /**
