@@ -4,8 +4,19 @@ import duke.ACowException;
 
 import java.util.Arrays;
 
+/**
+ * Parses client-related commands and returns the corresponding {@link ClientCommand} objects.
+ */
 public class ClientParser {
-    public static ClientCommand parse(String command) throws ACowException{
+
+    /**
+     * Parses a client command string and returns the corresponding {@link ClientCommand}.
+     *
+     * @param command the full command string to parse
+     * @return the parsed {@link ClientCommand}
+     * @throws ACowException if the command is invalid or unrecognized
+     */
+    public static ClientCommand parse(String command) throws ACowException {
         String[] words = command.split(" ");
         String keyword = words[1];
         String rest = (words.length > 2) ? String.join(" ", Arrays.copyOfRange(words, 2, words.length)) : null;
@@ -21,6 +32,12 @@ public class ClientParser {
         }
     }
 
+    /**
+     * Parses the arguments for adding a client.
+     *
+     * @param rest the argument string containing name, email, and phone
+     * @return the {@link AddClientCommand} with parsed details
+     */
     private static ClientCommand parseAddClient(String rest) {
         String[] halves = rest.split(" /email ");
         String name = halves[0];
@@ -30,6 +47,12 @@ public class ClientParser {
         return new AddClientCommand(name, email, phone);
     }
 
+    /**
+     * Parses the arguments for assigning a client to a task.
+     *
+     * @param rest the argument string containing task and client indices
+     * @return the {@link AssignClientCommand} with parsed indices
+     */
     private static ClientCommand parseAssign(String rest) {
         String[] halves = rest.split(" ");
         int taskIndex = Integer.parseInt(halves[0]);
