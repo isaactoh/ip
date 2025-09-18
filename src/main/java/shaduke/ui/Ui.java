@@ -50,6 +50,11 @@ public class Ui {
         System.out.println("Thou now possesseth " + size + " noble charges to fulfill.");
     }
 
+    /**
+     * Displays all current tasks.
+     *
+     * @param tasks The current list of tasks.
+     */
     public void showList(TaskList tasks) {
         System.out.println("Behold, the labours thou hast undertaken:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -117,6 +122,12 @@ public class Ui {
         }
     }
 
+    /**
+     * The message that confirms a client has been added.
+     *
+     * @param client The client being added.
+     * @param clients The current list of clients.
+     */
     public void showAddClient(Client client, ClientList clients) {
         System.out.println("Hail! " + client + " hath entered thy service.");
         System.out.println("Thou now commandest " + clients.size() + " loyal clients.");
@@ -131,6 +142,11 @@ public class Ui {
         System.out.println(client + " added to " + task);
     }
 
+    /**
+     * Displays all added clients.
+     *
+     * @param clients The current list of clients.
+     */
     public void showClients(ClientList clients) {
         System.out.println("Behold, thy valiant clients:");
         for (int i = 0; i < clients.size(); i++) {
@@ -138,6 +154,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays a message confirming a client has been deleted.
+     *
+     * @param client The client to be deleted.
+     */
     public void showDeleteClient(Client client) {
         System.out.println("Alas! " + client + " hath departed from thy fold.");
     }

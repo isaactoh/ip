@@ -73,7 +73,7 @@ public class Main extends Application {
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         String greeting = "Hello! I'm Shaduke. How can I help you today?";
-        dialogContainer.getChildren().add(new DialogBox(greeting, dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(greeting, dukeImage));
 
         //handling user input
         sendButton.setOnMouseClicked((event) -> {
@@ -95,8 +95,8 @@ public class Main extends Application {
         String userText = userInput.getText();
         String dukeText = shaduke.getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
-                new DialogBox(userText, userImage),
-                new DialogBox(dukeText, dukeImage)
+                DialogBox.getUserDialog(userText, userImage),
+                DialogBox.getDukeDialog(dukeText, dukeImage)
         );
         userInput.clear();
     }

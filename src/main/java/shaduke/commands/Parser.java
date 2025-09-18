@@ -39,7 +39,7 @@ public class Parser {
 
     private static Command parseTodo(String rest) {
         if (rest == null || rest.trim().isEmpty()) {
-            throw new ShadukeException("Don't forget to add a tasty curry recipe to your todo list!");
+            throw new ShadukeException("You need to add a description!");
         }
         return new AddCommand(new Todo(rest));
     }

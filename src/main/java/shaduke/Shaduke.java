@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /**
  * The ACow program is the main entry point to an application
- * that stores and manages todo list tasks
+ * that stores and manages tasks.
  *
  * @author isaactoh
  */
@@ -70,6 +70,12 @@ public class Shaduke {
         }
     }
 
+    /**
+     * Handles responses from the GUI.
+     *
+     * @param input The text input from the GUI.
+     * @return The new message to be displayed on the GUI.
+     */
     public String getResponse(String input) {
         try {
             if (Objects.equals(input.split(" ")[0], "client")) {

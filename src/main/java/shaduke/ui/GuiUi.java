@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class that doth converse with the user in the tongue of the Bard, for GUI output.
+ * Class that deals with interactions with the user throught the GUI.
  */
 public class GuiUi extends Ui {
     private final List<String> messages;
@@ -31,7 +31,6 @@ public class GuiUi extends Ui {
         return sb.toString();
     }
 
-    // ----------------- Task Messages -----------------
     @Override
     public void showGreeting() {
         addMessage("Hail, noble friend! I am thy humble servant, acow123_bot.");
@@ -93,17 +92,19 @@ public class GuiUi extends Ui {
         }
     }
 
-    // ----------------- Client Messages -----------------
+    @Override
     public void showAddClient(Client client, ClientList clients) {
         addMessage("Hail! " + client + " hath entered thy service.");
         addMessage("Thou now commandest " + clients.size() + " loyal clients.");
     }
 
+    @Override
     public void showAssignClient(Task task, Client client) {
         addMessage(client + " hath been assigned unto this noble task:");
         addMessage("  " + task);
     }
 
+    @Override
     public void showClients(ClientList clients) {
         addMessage("Behold, thy valiant clients:");
         for (int i = 0; i < clients.size(); i++) {
@@ -111,14 +112,17 @@ public class GuiUi extends Ui {
         }
     }
 
+    @Override
     public void showDeleteClient(Client client) {
         addMessage("Alas! " + client + " hath departed from thy fold.");
     }
 
+    @Override
     public void showLeave(int index, Client client) {
         addMessage(client + " hath forsaken the task numbered " + (index + 1));
     }
 
+    @Override
     public void showClientTasks(TaskList tasks, Client client) {
         addMessage("Tasks wherein " + client + " doth partake:");
         for (int i = 0; i < tasks.size(); i++) {
