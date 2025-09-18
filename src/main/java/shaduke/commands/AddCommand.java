@@ -1,7 +1,7 @@
 package shaduke.commands;
 
 
-import shaduke.ACowException;
+import shaduke.ShadukeException;
 import shaduke.Storage;
 import shaduke.tasks.Task;
 import shaduke.tasks.TaskList;
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
         try {
             storage.save(tasks);
         } catch (IOException e) {
-            throw new ACowException(e.getMessage());
+            throw new ShadukeException(e.getMessage());
         }
     }
 

@@ -1,12 +1,12 @@
-package duke;
+package shaduke;
 
-import duke.clientcommands.ClientCommand;
-import duke.clientcommands.ClientParser;
-import duke.clients.ClientList;
-import duke.commands.Command;
-import duke.commands.Parser;
-import duke.tasks.TaskList;
-import duke.ui.Ui;
+import shaduke.clientcommands.ClientCommand;
+import shaduke.clientcommands.ClientParser;
+import shaduke.clients.ClientList;
+import shaduke.commands.Command;
+import shaduke.commands.Parser;
+import shaduke.tasks.TaskList;
+import shaduke.ui.Ui;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -17,18 +17,18 @@ import java.util.Objects;
  *
  * @author isaactoh
  */
-public class ACow {
+public class Shaduke {
     private final Ui ui;
     private static TaskList todolist;
     private static Storage storage;
     private static ClientList clients;
 
     /**
-     * Constructs an ACow instance with the specified storage file
+     * Constructs a Shaduke instance with the specified storage file
      *
      * @param filePath the file path to where tasks are stored
      */
-    public ACow(String filePath) {
+    public Shaduke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         clients = new ClientList();
@@ -55,7 +55,6 @@ public class ACow {
                 String command = ui.readCommand();
                 ui.printDashes();
                 if (Objects.equals(command.split(" ")[0], "client")) {
-                    System.out.println("client success!");
                     ClientCommand c = ClientParser.parse(command);
                     c.execute(todolist, clients, ui);
                 } else {
@@ -63,7 +62,7 @@ public class ACow {
                     c.execute(todolist, ui, storage);
                     isExit = c.isExit();
                 }
-            } catch (ACowException e) {
+            } catch (ShadukeException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.printDashes();
@@ -73,13 +72,17 @@ public class ACow {
 
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input);
-            return c.executeAndReturn(todolist, storage);
-        } catch (ACowException e) {
+            if (Objects.equals(input.split(" ")[0], "client")) {
+                ClientCommand c = ClientParser.parse(input);
+                return c.executeAndReturn(todolist, clients);
+            } else {
+                Command c = Parser.parse(input);
+                return c.executeAndReturn(todolist, storage);
+            }
+        } catch (ShadukeException e) {
             return e.getMessage();
         }
     }
-
 
     /**
      * The main entry point for the ACow application
@@ -87,6 +90,6 @@ public class ACow {
      * @param args command-line arguments
      */
     public static void main(String[] args) {
-        new ACow("data/tasks.txt").run();
+        new Shaduke("data/tasks.txt").run();
     }
 }

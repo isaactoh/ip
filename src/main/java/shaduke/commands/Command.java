@@ -1,6 +1,6 @@
 package shaduke.commands;
 
-import shaduke.ACowException;
+import shaduke.ShadukeException;
 import shaduke.Storage;
 import shaduke.tasks.TaskList;
 import shaduke.ui.GuiUi;
@@ -24,7 +24,7 @@ public abstract class Command {
      */
     public abstract boolean isExit();
 
-    public String executeAndReturn(TaskList tasks, Storage storage) throws ACowException {
+    public String executeAndReturn(TaskList tasks, Storage storage) throws ShadukeException {
         GuiUi tempUi = new GuiUi(); // e.g. UI that buffers instead of printing
         this.execute(tasks, tempUi, storage);
         return tempUi.getOutput();

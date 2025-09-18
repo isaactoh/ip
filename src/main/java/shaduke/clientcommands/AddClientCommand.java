@@ -5,6 +5,9 @@ import shaduke.clients.ClientList;
 import shaduke.tasks.TaskList;
 import shaduke.ui.Ui;
 
+/**
+ * Represents the addition of a client.
+ */
 public class AddClientCommand extends ClientCommand {
     private Client client;
 

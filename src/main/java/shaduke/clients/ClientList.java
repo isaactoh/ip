@@ -2,15 +2,14 @@ package shaduke.clients;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of clients.
+ */
 public class ClientList {
     private ArrayList<Client> clients;
 
     public ClientList() {
         this.clients = new ArrayList<>();
-    }
-
-    public ClientList(ArrayList<Client> clients) {
-        this.clients = clients;
     }
 
     public void add(Client client) {

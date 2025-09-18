@@ -19,7 +19,7 @@ public class AssignClientCommand extends ClientCommand {
     public void execute(TaskList tasklist, ClientList clients, Ui ui) {
         Client client = clients.get(clientIndex);
         Task task = tasklist.get(taskIndex);
-        task.addClient(client);
         ui.showAssignClient(task, client);
+        task.addClient(client);
     }
 }

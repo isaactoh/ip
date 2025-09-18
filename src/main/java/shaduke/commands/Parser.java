@@ -1,6 +1,6 @@
 package shaduke.commands;
 
-import shaduke.ACowException;
+import shaduke.ShadukeException;
 import shaduke.tasks.Deadline;
 import shaduke.tasks.Event;
 import shaduke.tasks.Todo;
@@ -15,9 +15,9 @@ public class Parser {
      *
      * @param command the user input.
      * @return the command to be executed.
-     * @throws ACowException the exception unique to this application.
+     * @throws ShadukeException the exception unique to this application.
      */
-    public static Command parse(String command) throws ACowException {
+    public static Command parse(String command) throws ShadukeException {
         String[] words = command.split(" ", 2);
         assert words.length >= 1: "Parser error: command.split should always produce at least one word";
         String keyword = words[0];
@@ -33,24 +33,24 @@ public class Parser {
         case "unmark": return new UnmarkCommand(Integer.parseInt(rest));
         case "delete": return new DeleteCommand(Integer.parseInt(rest));
         case "find": return new FindCommand(rest);
-        default: throw new ACowException("I don't understand like when Shohib talks to me");
+        default: throw new ShadukeException("I don't understand like when Shohib talks to me");
         }
     }
 
     private static Command parseTodo(String rest) {
         if (rest == null || rest.trim().isEmpty()) {
-            throw new ACowException("Don't forget to add a tasty curry recipe to your todo list!");
+            throw new ShadukeException("Don't forget to add a tasty curry recipe to your todo list!");
         }
         return new AddCommand(new Todo(rest));
     }
 
     private static Command parseDeadline(String rest) {
         if (rest == null) {
-            throw new ACowException("Need '/by!'");
+            throw new ShadukeException("Need '/by!'");
         }
         String[] deadParts = rest.split(" /by ");
         if (deadParts.length < 2) {
-            throw new ACowException("By when? Christmas?");
+            throw new ShadukeException("By when? Christmas?");
         }
         return new AddCommand(new Deadline(deadParts[0], deadParts[1]));
     }

@@ -1,10 +1,10 @@
-package duke;
+package shaduke;
 
 /**
  * Represents the exceptions unique to this application.
  */
-public class ACowException extends RuntimeException {
-    public ACowException(String msg) {
+public class ShadukeException extends RuntimeException {
+    public ShadukeException(String msg) {
         super(msg);
     }
 

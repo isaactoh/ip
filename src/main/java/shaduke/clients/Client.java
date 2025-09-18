@@ -1,5 +1,8 @@
 package shaduke.clients;
 
+/**
+ * Represents another person that could possibly be involved in a task.
+ */
 public class Client {
     private String name;
     private String email;

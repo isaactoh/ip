@@ -1,7 +1,7 @@
 package shaduke.tasks;
 
 
-import shaduke.ACowException;
+import shaduke.ShadukeException;
 
 /**
  * Class that handles the conversion of saved task data from storage
@@ -31,7 +31,7 @@ public class TaskLoader {
                 String to = parts[3].split(" - ")[1];
                 return new Event(parts[2], from, to, isDone);
             default:
-                throw new ACowException("Too slow a file for me!");
+                throw new ShadukeException("Too slow a file for me!");
         }
     }
 }

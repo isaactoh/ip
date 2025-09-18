@@ -21,7 +21,7 @@ public class Main extends Application {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.jpeg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.jpeg"));
-    private ACow aCow = new ACow("data/tasks.txt");
+    private Shaduke shaduke = new Shaduke("data/tasks.txt");
 
     @Override
     public void start(Stage stage) {
@@ -44,7 +44,7 @@ public class Main extends Application {
 
         //Formatting the window to look as expected
 
-        stage.setTitle("ACow");
+        stage.setTitle("Shaduke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -90,7 +90,7 @@ public class Main extends Application {
      */
     private void handleUserInput() {
         String userText = userInput.getText();
-        String dukeText = aCow.getResponse(userInput.getText());
+        String dukeText = shaduke.getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
                 new DialogBox(userText, userImage),
                 new DialogBox(dukeText, dukeImage)

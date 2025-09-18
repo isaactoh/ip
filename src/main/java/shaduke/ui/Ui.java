@@ -50,11 +50,6 @@ public class Ui {
         System.out.println("Thou now possesseth " + size + " noble charges to fulfill.");
     }
 
-    /**
-     * Displays the current tasks in the list.
-     *
-     * @param tasks list of current tasks.
-     */
     public void showList(TaskList tasks) {
         System.out.println("Behold, the labours thou hast undertaken:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -126,6 +121,11 @@ public class Ui {
         System.out.println("Thou now commandest " + clients.size() + " loyal clients.");
     }
 
+    /**
+     * The message shown when a client is assigned to a task.
+     * @param task the task the client is to join.
+     * @param client the client we are assigning.
+     */
     public void showAssignClient(Task task, Client client) {
         System.out.println(client + " added to " + task);
     }
@@ -141,10 +141,22 @@ public class Ui {
         System.out.println("Alas! " + client + " hath departed from thy fold.");
     }
 
+    /**
+     * Displays the message when a client leaves a selected task.
+     *
+     * @param index the index of the task the client is leaving.
+     * @param client the client that is leaving the task.
+     */
     public void showLeave(int index, Client client) {
         System.out.println(client + " hath forsaken the task numbered " + (index + 1));
     }
 
+    /**
+     * Lists the tasks a client is part of.
+     *
+     * @param tasks the current list of tasks.
+     * @param client the client we are interested in.
+     */
     public void showClientTasks(TaskList tasks, Client client) {
         System.out.println("Tasks wherein " + client + " doth partake:");
         for (int i = 0; i < tasks.size(); i++) {

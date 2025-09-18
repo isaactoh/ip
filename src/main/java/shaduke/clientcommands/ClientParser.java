@@ -1,6 +1,6 @@
 package shaduke.clientcommands;
 
-import shaduke.ACowException;
+import shaduke.ShadukeException;
 
 import java.util.Arrays;
 
@@ -14,9 +14,9 @@ public class ClientParser {
      *
      * @param command the full command string to parse
      * @return the parsed {@link ClientCommand}
-     * @throws ACowException if the command is invalid or unrecognized
+     * @throws ShadukeException if the command is invalid or unrecognized
      */
-    public static ClientCommand parse(String command) throws ACowException {
+    public static ClientCommand parse(String command) throws ShadukeException {
         String[] words = command.split(" ");
         String keyword = words[1];
         String rest = (words.length > 2) ? String.join(" ", Arrays.copyOfRange(words, 2, words.length)) : null;
@@ -28,7 +28,7 @@ public class ClientParser {
             case "assign": return parseAssign(rest);
             case "leave": return new LeaveCommand(Integer.parseInt(rest));
             case "tasks": return new ClientTasksCommand(Integer.parseInt(rest));
-            default: throw new ACowException("Clients are blur, need instructions");
+            default: throw new ShadukeException("Clients are blur, need instructions");
         }
     }
 

@@ -1,6 +1,6 @@
 package shaduke.tasks;
 
-import shaduke.ACowException;
+import shaduke.ShadukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +37,7 @@ public class Deadline extends Task {
         try {
             this.by = LocalDate.parse(byStr, INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new ACowException("Please use yyyy-mm-dd format for deadlines!");
+            throw new ShadukeException("Please use yyyy-mm-dd format for deadlines!");
         }
     }
 
