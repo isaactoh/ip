@@ -109,6 +109,7 @@ public class Ui {
      * Displays tasks in the list with the string inputted.
      */
     public void showFind(TaskList tasks, String toSearch) {
+        System.out.println("Here are the tasks with " + toSearch + ":");
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).toString().contains(toSearch)) {
                 System.out.println((i + 1) + ". " + tasks.get(i));
@@ -160,8 +161,11 @@ public class Ui {
     public void showClientTasks(TaskList tasks, Client client) {
         System.out.println("Tasks wherein " + client + " doth partake:");
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getClient().equals(client)) {
+            Task task = tasks.get(i);
+            if (task.getClient() != null && task.getClient().equals(client)) {
+                task.deleteClient();
                 System.out.println((i + 1) + ". " + tasks.get(i));
+                task.addClient(client);
             }
         }
     }

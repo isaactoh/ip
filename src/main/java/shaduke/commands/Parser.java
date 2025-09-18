@@ -50,7 +50,7 @@ public class Parser {
         }
         String[] deadParts = rest.split(" /by ");
         if (deadParts.length < 2) {
-            throw new ShadukeException("By when? Christmas?");
+            throw new ShadukeException("Missing description or date!");
         }
         return new AddCommand(new Deadline(deadParts[0], deadParts[1]));
     }

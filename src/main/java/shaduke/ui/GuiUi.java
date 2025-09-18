@@ -122,8 +122,11 @@ public class GuiUi extends Ui {
     public void showClientTasks(TaskList tasks, Client client) {
         addMessage("Tasks wherein " + client + " doth partake:");
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getClient().equals(client)) {
-                addMessage((i + 1) + ". " + tasks.get(i));
+            Task task = tasks.get(i);
+            if (task.getClient() != null && task.getClient().equals(client)) {
+                task.deleteClient();
+                addMessage((i + 1) + ". " + task);
+                task.addClient(client);
             }
         }
     }

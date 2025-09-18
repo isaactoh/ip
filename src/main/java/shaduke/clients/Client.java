@@ -1,7 +1,7 @@
 package shaduke.clients;
 
 /**
- * Represents another person that could possibly be involved in a task.
+ * Represents another person involved in a task.
  */
 public class Client {
     private String name;
@@ -16,6 +16,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return " Client: " + name + " (email: " + email + ", phone: " + phone + ")";
+        return "Client: " + name + " (email: " + email + ", phone: " + phone + ")";
     }
 }

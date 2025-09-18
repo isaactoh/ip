@@ -10,14 +10,14 @@ public class DeleteClientCommand extends ClientCommand{
     private int index;
 
     public DeleteClientCommand(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     @Override
     public void execute(TaskList tasklist, ClientList clients, Ui ui) {
         Client client = clients.get(index);
         for (Task t : tasklist.getTasks()) {
-            if (!t.getClient().equals(client)) {
+            if (t.getClient() != null && t.getClient().equals(client)) {
                 t.deleteClient();
             }
         }

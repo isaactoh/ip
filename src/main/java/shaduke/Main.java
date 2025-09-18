@@ -72,6 +72,9 @@ public class Main extends Application {
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
+        String greeting = "Hello! I'm Shaduke. How can I help you today?";
+        dialogContainer.getChildren().add(new DialogBox(greeting, dukeImage));
+
         //handling user input
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
